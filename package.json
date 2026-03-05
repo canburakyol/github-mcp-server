@@ -5,8 +5,12 @@
   "type": "module",
   "main": "build/index.js",
   "scripts": {
-    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "build": "tsc",
     "dev": "tsc --watch",
+    "start": "node build/index.js",
+    "pretest": "npm run build",
+    "test": "node --test \"build/**/*.test.js\"",
+    "check": "npm run test",
     "prepare": "npm run build"
   },
   "dependencies": {

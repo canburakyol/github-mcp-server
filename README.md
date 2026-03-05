@@ -1,51 +1,51 @@
-# GitHub MCP Server 🤖
+﻿# GitHub MCP Server
 
-A Model Context Protocol (MCP) server that empowers AI Agents (like Cursor, Claude, and Copilot) to seamlessly interact with GitHub repositories.
+TypeScript MCP server for automating GitHub repository operations from AI agents.
 
-This server provides tools to list, view, create, update, and completely manage GitHub infrastructure directly through semantic LLM prompts.
+## What this server does
 
-## Features
+- Lists repositories for the authenticated user
+- Fetches repository details
+- Creates repositories
+- Updates repository settings
+- Lists repository contents
+- Deletes repositories
+- Returns authenticated user profile data
 
-- 📂 **Manage Repositories:** Create, delete, and list repositories dynamically.
-- 📝 **Content Retrieval:** Read file structures and content directly from GitHub branches.
-- ⚙️ **Project Configuration:** Manage repository settings, visibility, and features.
-- 🔒 **Type-Safe:** Fully typed with TypeScript and Zod schema validation.
+## Tech stack
 
-## Prerequisites
+- Node.js
+- TypeScript
+- `@modelcontextprotocol/sdk`
+- `@octokit/rest`
+- Zod
 
-- Node.js >= 18.0.0
-- A GitHub Personal Access Token (PAT) with repository scopes.
-
-## Installation
+## Quick start
 
 ```bash
-# Clone the repository
 git clone https://github.com/canburakyol/github-mcp-server.git
 cd github-mcp-server
-
-# Install dependencies
-npm install
-
-# Build the project
-npm run build
+npm ci
 ```
 
-## Usage
-
-Set your `GITHUB_TOKEN` environment variable before running the server:
+Set your token:
 
 ```bash
+# Linux/macOS
 export GITHUB_TOKEN=your_personal_access_token
+
+# Windows PowerShell
+$env:GITHUB_TOKEN="your_personal_access_token"
 ```
 
-To run the MCP server:
+Build and run:
+
 ```bash
-node build/index.js
+npm run build
+npm run start
 ```
 
-### Integration with Cursor
-
-To use this with Cursor's MCP features, add the following to your MCP configuration:
+## MCP configuration example
 
 ```json
 {
@@ -59,17 +59,22 @@ To use this with Cursor's MCP features, add the following to your MCP configurat
 }
 ```
 
-## Available Tools
+## Development commands
 
-The server exposes the following MCP tools to your AI agent:
+- `npm run dev`: TypeScript watch mode
+- `npm test`: Compile and run unit tests
+- `npm run check`: Full local verification
 
-- `list_repositories`: Filter, sort, and search your GitHub repos.
-- `get_repository`: Fetch detailed metadata for a specific repository.
-- `create_repository`: Initialize new projects with templates.
-- `update_repository`: Change repository settings dynamically.
-- `list_contents`: Read files and directory structures.
-- `delete_repository`: Completely remove a repository.
-- `get_authenticated_user`: Retrieve profile data context.
+## Quality signals
+
+- Unit tests for repository output mapping
+- CI workflow on push and pull request (`.github/workflows/ci.yml`)
+- `node_modules` and `build` excluded from version control
+- MIT license included
+
+## Security note
+
+Use a minimum-scope GitHub PAT and rotate it regularly. Never commit tokens to source control.
 
 ## License
 
